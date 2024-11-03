@@ -7,7 +7,7 @@ pipeline {
         stage('Git Checkout') {
             steps {
                 // Clone the repository
-                git branch: 'master', url: 'https://github.com/Naveen7k/DEVOPS_2024.git'
+                git 'https://github.com/Naveen7k/DEVOPS_2024.git'
             }
         }
         stage('Docker Build') {
