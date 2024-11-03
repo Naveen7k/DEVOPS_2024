@@ -1,0 +1,52 @@
+pipeline {
+    agent any
+    environment {
+        IMAGE_NAME = "naveen7k/my-webapp:latest"
+    }
+    stages {
+        stage('Git Checkout') {
+            steps {
+                // Clone the repository
+                git branch: 'master', url: 'https://github.com/Naveen7k/DEVOPS_2024.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                // Build the project (e.g., using Maven)
+                sh 'mvn clean package'
+            }
+        }
+        stage('Docker Build') {
+            steps {
+                // Build Docker image
+                sh "docker build -t ${IMAGE_NAME} ./simple-frontend"
+            }
+        }
+        stage('Docker Push') {
+            steps {
+                // Login to Docker Hub (requires Docker Hub credentials)
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials-id', 
+                                  usernameVariable: 'DOCKER_USER', 
+                                  passwordVariable: 'DOCKER_PASS')]) {
+                    sh "echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin"
+                }
+                // Push image to Docker Hub
+                sh "docker push ${IMAGE_NAME}"
+            }
+        }
+        stage('Run Container') {
+            steps {
+                // Stop any running container
+                sh "docker rm -f my-webapp || true"
+                // Run the new container
+                sh "docker run -d --name my-webapp -p 8080:8080 ${IMAGE_NAME}"
+            }
+        }
+    }
+    post {
+        always {
+            // Cleanup unused Docker images
+            sh 'docker image prune -f'
+        }
+    }
+}vs
