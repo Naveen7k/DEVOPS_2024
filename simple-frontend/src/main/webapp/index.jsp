@@ -3,6 +3,6 @@
 <title>Hello World</title>
 </head>
 <body>
-<h2>Hello World from GitHub Actions & Docker</h2>
+<h2>Hello World from Jenkins, webhooks & Docker</h2>
 </body>
 </html>
