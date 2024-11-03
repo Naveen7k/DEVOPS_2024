@@ -14,5 +14,7 @@ jobs:
     steps:
     - name: Docker Pull Image
       run: docker pull naveen7k/my-webapp:latest
+    - name: Delete OLD container if exists
+      run: docker rm -f my-webapp-container || true
     - name: Run docker container
       run: docker run -d -p 8082:8082 --name my-webapp-container naveen7k/my-webapp:latest
