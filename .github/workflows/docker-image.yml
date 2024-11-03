@@ -23,5 +23,5 @@ jobs:
       run: docker build -t my-webapp-image ./simple-frontend
 
     - name: Docker push
-      run: docker push naveen7k/my-webapp-image:latest
+      run: docker push naveen7k/my-webapp:latest
      
