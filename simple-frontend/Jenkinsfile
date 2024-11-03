@@ -10,12 +10,6 @@ pipeline {
                 git branch: 'master', url: 'https://github.com/Naveen7k/DEVOPS_2024.git'
             }
         }
-        stage('Build') {
-            steps {
-                // Build the project (e.g., using Maven)
-                sh 'mvn clean package'
-            }
-        }
         stage('Docker Build') {
             steps {
                 // Build Docker image
@@ -25,7 +19,7 @@ pipeline {
         stage('Docker Push') {
             steps {
                 // Login to Docker Hub (requires Docker Hub credentials)
-                withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials-id', 
+                withCredentials([usernamePassword(credentialsId: 'docker-hub-cred', 
                                   usernameVariable: 'DOCKER_USER', 
                                   passwordVariable: 'DOCKER_PASS')]) {
                     sh "echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin"
