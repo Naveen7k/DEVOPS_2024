@@ -20,8 +20,8 @@ jobs:
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
       run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
     - name: Build the Docker image
-      run: docker build -t my-webapp ./simple-frontend
+      run: docker build -t naveen7k/my-webapp:latest ./simple-frontend
 
     - name: Docker push
-      run: docker push my-webapp:latest
+      run: docker push naveen7k/my-webapp:latest
      
