@@ -1,4 +1,4 @@
-ename: Docker Image CI P{ipeline
+ename: Docker Image CI Pipeline
 
 on:
   push:
