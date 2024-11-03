@@ -33,7 +33,7 @@ pipeline {
                 // Stop any running container
                 sh "docker rm -f my-webapp || true"
                 // Run the new container
-                sh "docker run -d --name my-webapp -p 8080:8080 ${IMAGE_NAME}"
+                sh "docker run -d --name my-webapp -p 8082:8082 ${IMAGE_NAME}"
             }
         }
     }
