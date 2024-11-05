@@ -9,7 +9,7 @@ pipeline {
                 // Clone the repository
                 git 'https://github.com/Naveen7k/DEVOPS_2024.git'
             }
-            post {
+            /*post {
                 success {
                     emailext subject: "Jenkins Pipeline - Git Checkout Success",
                              body: "The Git Checkout stage was successful.",
@@ -20,7 +20,7 @@ pipeline {
                              body: "The Git Checkout stage failed.",
                              to: "your-email@domain.com"
                 }
-            }
+            }*/
         }
         stage('Docker Build') {
             steps {
